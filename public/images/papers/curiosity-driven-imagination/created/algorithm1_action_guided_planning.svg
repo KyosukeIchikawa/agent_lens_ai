@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="900" height="1200" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 - 透過に変更 -->
+  <rect width="900" height="1200" fill="none"/>
+  
+  <!-- タイトル -->
+  <rect x="150" y="20" width="600" height="80" rx="10" ry="10" fill="#e0f0ff" stroke="#0060a0" stroke-width="2"/>
+  <text x="450" y="50" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" fill="#0060a0" font-weight="bold">アルゴリズム1: イマジナリードメインでのアクション誘導計画</text>
+  <text x="450" y="80" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#0060a0">(Action-Guided Planning in Imaginary Domain)</text>
+  
+  <!-- 入力と出力の説明 -->
+  <rect x="200" y="120" width="500" height="60" rx="5" ry="5" fill="#f0f0f0" stroke="#404040" stroke-width="1"/>
+  <text x="450" y="145" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">入力: 統合計画タスク(𝒯), 環境(M), 計画(𝒫)</text>
+  <text x="450" y="165" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">出力: 実行成功/失敗のブール値</text>
+  
+  <!-- メインフロー開始 -->
+  <rect x="250" y="200" width="400" height="60" rx="5" ry="5" fill="#e0e0ff" stroke="#4040a0" stroke-width="1.5"/>
+  <text x="450" y="235" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" font-weight="bold">初期化とエージェント設定</text>
+  
+  <!-- 計画ループの開始 -->
+  <rect x="200" y="280" width="500" height="60" rx="5" ry="5" fill="#e0e0e0" stroke="#404040" stroke-width="1.5"/>
+  <text x="450" y="315" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" font-weight="bold">計画𝒫のアクションを順次実行</text>
+  
+  <!-- 実行状態の確認 -->
+  <path d="M 450 340 L 450 380" stroke="#000000" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <polygon points="350,380 550,380 450,460" fill="#fff8e0" stroke="#a08000" stroke-width="1.5"/>
+  <text x="450" y="410" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" font-weight="bold">環境変化による実行障害が発生?</text>
+  
+  <!-- 分岐: 障害なし -->
+  <path d="M 550 380 L 650 380 L 650 520" stroke="#000000" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <text x="600" y="370" font-family="Arial, sans-serif" font-size="14" fill="#000000">いいえ</text>
+  
+  <!-- 分岐: 障害あり -->
+  <path d="M 350 380 L 250 380 L 250 480" stroke="#000000" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <text x="300" y="370" font-family="Arial, sans-serif" font-size="14" fill="#000000">はい</text>
+  
+  <!-- 障害発生時の処理 -->
+  <rect x="100" y="480" width="300" height="140" rx="5" ry="5" fill="#ffe0e0" stroke="#a04040" stroke-width="1.5"/>
+  <text x="250" y="505" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" font-weight="bold">障害発生時の適応処理</text>
+  <text x="250" y="530" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">1. 環境変化の検出 (M → M')</text>
+  <text x="250" y="550" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">2. 実行障害の特定</text>
+  <text x="250" y="570" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">3. 統合計画タスクを伸縮IPTとして更新</text>
+  <text x="250" y="590" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">4. 失敗情報を記録</text>
+  
+  <!-- 好奇心駆動型イマジネーション呼び出し -->
+  <rect x="100" y="640" width="300" height="80" rx="5" ry="5" fill="#ffe0c0" stroke="#a04000" stroke-width="1.5"/>
+  <text x="250" y="665" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" font-weight="bold">好奇心駆動型イマジネーション</text>
+  <text x="250" y="685" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">Algorithm 2を呼び出して新しいオペレータを発見</text>
+  <text x="250" y="705" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">(発見オペレータ o_discovery を取得)</text>
+  
+  <!-- 発見オペレータの検証 -->
+  <path d="M 250 720 L 250 760" stroke="#000000" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <polygon points="150,760 350,760 250,840" fill="#fff8e0" stroke="#a08000" stroke-width="1.5"/>
+  <text x="250" y="790" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" font-weight="bold">発見オペレータの実行は成功?</text>
+  
+  <!-- 分岐: 成功 -->
+  <path d="M 350 760 L 650 760 L 650 640" stroke="#000000" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <text x="500" y="750" font-family="Arial, sans-serif" font-size="14" fill="#000000">はい</text>
+  
+  <!-- 分岐: 失敗 -->
+  <path d="M 150 760 L 50 760 L 50 900" stroke="#000000" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <text x="100" y="750" font-family="Arial, sans-serif" font-size="14" fill="#000000">いいえ</text>
+  
+  <!-- 計画続行の確認 -->
+  <rect x="500" y="520" width="300" height="80" rx="5" ry="5" fill="#e0ffe0" stroke="#00a040" stroke-width="1.5"/>
+  <text x="650" y="545" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" font-weight="bold">計画の続行</text>
+  <text x="650" y="570" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">1. 次のアクションを実行</text>
+  <text x="650" y="590" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">2. 計画の進行状況を更新</text>
+  
+  <!-- 計画完了の確認 -->
+  <polygon points="550,640 750,640 650,720" fill="#fff8e0" stroke="#a08000" stroke-width="1.5"/>
+  <text x="650" y="670" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" font-weight="bold">計画𝒫は完了?</text>
+  <path d="M 650 600 L 650 640" stroke="#000000" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- 分岐: 計画未完了 -->
+  <path d="M 550 640 L 500 640 L 500 315 L 550 315" stroke="#000000" stroke-width="2" fill="none" stroke-dasharray="5,5" marker-end="url(#arrowhead)"/>
+  <text x="520" y="630" font-family="Arial, sans-serif" font-size="14" fill="#000000">いいえ</text>
+  
+  <!-- 分岐: 計画完了 -->
+  <path d="M 750 640 L 800 640 L 800 900" stroke="#000000" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <text x="780" y="630" font-family="Arial, sans-serif" font-size="14" fill="#000000">はい</text>
+  
+  <!-- 成功結果 -->
+  <rect x="650" y="900" width="300" height="60" rx="10" ry="10" fill="#e0ffe0" stroke="#00a040" stroke-width="2"/>
+  <text x="800" y="935" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" font-weight="bold">return true (実行成功)</text>
+  
+  <!-- 失敗結果 -->
+  <rect x="50" y="900" width="300" height="60" rx="10" ry="10" fill="#ffe0e0" stroke="#a04040" stroke-width="2"/>
+  <text x="200" y="935" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" font-weight="bold">return false (実行失敗)</text>
+  
+  <!-- 説明ボックス: ハイブリッド特性 -->
+  <rect x="50" y="1000" width="350" height="150" rx="10" ry="10" fill="#f0f0ff" stroke="#4040a0" stroke-width="1.5"/>
+  <text x="225" y="1025" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" font-weight="bold" fill="#4040a0">AI Tips: ハイブリッドアプローチの特性</text>
+  <text x="70" y="1050" font-family="Arial, sans-serif" font-size="13" fill="#000000">• シンボリック計画と強化学習の統合によるロバスト性</text>
+  <text x="70" y="1075" font-family="Arial, sans-serif" font-size="13" fill="#000000">• 環境変化に対する適応能力</text>
+  <text x="70" y="1100" font-family="Arial, sans-serif" font-size="13" fill="#000000">• 障害発生時の対応: 新オペレータ発見と学習</text>
+  <text x="70" y="1125" font-family="Arial, sans-serif" font-size="13" fill="#000000">• 発見した知識を再利用可能な形で抽象化</text>
+  
+  <!-- 説明ボックス: 関連概念 -->
+  <rect x="500" y="1000" width="350" height="150" rx="10" ry="10" fill="#f8f8f8" stroke="#404040" stroke-width="1.5"/>
+  <text x="675" y="1025" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" font-weight="bold">主要概念の説明</text>
+  <text x="520" y="1050" font-family="Arial, sans-serif" font-size="13" fill="#000000">• <tspan font-weight="bold">統合計画タスク(IPT):</tspan> STRIPS計画とMDPの統合</text>
+  <text x="520" y="1075" font-family="Arial, sans-serif" font-size="13" fill="#000000">• <tspan font-weight="bold">伸縮IPT:</tspan> 環境変化に応じて調整される計画タスク</text>
+  <text x="520" y="1100" font-family="Arial, sans-serif" font-size="13" fill="#000000">• <tspan font-weight="bold">発見オペレータ:</tspan> 好奇心駆動学習で発見された新動作</text>
+  <text x="520" y="1125" font-family="Arial, sans-serif" font-size="13" fill="#000000">• <tspan font-weight="bold">実行障害:</tspan> 環境変化によるオペレータ実行の失敗</text>
+  
+  <!-- 矢印ヘッドの定義 -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#000000"/>
+    </marker>
+  </defs>
+</svg>

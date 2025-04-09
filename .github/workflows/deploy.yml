@@ -1,0 +1,66 @@
+name: Deploy Next.js site to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+# GitHub Pagesに必要な権限設定
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+  deployments: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Enable GitHub Pages
+        run: |
+          echo "Enabling GitHub Pages..."
+          
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          cache: 'npm'
+      
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v4
+        with:
+          # GitHub Pagesを自動的に有効化
+          enablement: true
+          
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Build with Next.js
+        run: npm run build
+        env:
+          NODE_ENV: production
+          
+      - name: Create .nojekyll file
+        run: touch ./out/.nojekyll
+      
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./out
+      
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+        with:
+          artifact_name: github-pages

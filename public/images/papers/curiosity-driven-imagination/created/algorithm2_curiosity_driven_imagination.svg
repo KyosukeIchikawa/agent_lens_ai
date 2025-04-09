@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="900" height="1200" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 - 透過に変更 -->
+  <rect width="900" height="1200" fill="none"/>
+  
+  <!-- タイトル -->
+  <rect x="150" y="20" width="600" height="80" rx="10" ry="10" fill="#e0e0ff" stroke="#000080" stroke-width="2"/>
+  <text x="450" y="50" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" fill="#000080" font-weight="bold">アルゴリズム2: 好奇心駆動型イマジネーション</text>
+  <text x="450" y="80" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#000080">(Curiosity-Driven Imagination)</text>
+  
+  <!-- 入力と出力の説明 -->
+  <rect x="200" y="120" width="500" height="60" rx="5" ry="5" fill="#f0f0f0" stroke="#404040" stroke-width="1"/>
+  <text x="450" y="145" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">入力: タスク(𝒯~), 目標オペレータ(o_f), 目標状態(s_f)</text>
+  <text x="450" y="165" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">出力: 適応知識(x_adapting) または 発見オペレータ(o_discovery)</text>
+  
+  <!-- 初期化部分 -->
+  <rect x="250" y="200" width="400" height="80" rx="5" ry="5" fill="#d0e0ff" stroke="#0040a0" stroke-width="1.5"/>
+  <text x="450" y="225" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" font-weight="bold">イマジナリードメイン初期化</text>
+  <text x="450" y="250" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">ドメイン σ_im を環境(ℰ)と特徴(ℱ)で初期化</text>
+  <text x="450" y="270" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">計画タスク T と初期オペレータ 𝒪_im を設定</text>
+  
+  <!-- 矢印 -->
+  <path d="M 450 200 L 450 190 L 450 180" stroke="#000000" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- メインループ -->
+  <rect x="200" y="300" width="500" height="60" rx="5" ry="5" fill="#e0e0e0" stroke="#404040" stroke-width="1.5"/>
+  <text x="450" y="335" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" font-weight="bold">エピソードループ (各エピソードで以下を実行)</text>
+  
+  <!-- 左側分岐：イマジナリー空間での計画 -->
+  <rect x="100" y="400" width="300" height="120" rx="5" ry="5" fill="#d0e0ff" stroke="#0040a0" stroke-width="1.5"/>
+  <text x="250" y="425" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" font-weight="bold">イマジナリー空間計画 (PRM)</text>
+  <text x="250" y="450" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">1. 確率 f_p に応じて計画実行を決定</text>
+  <text x="250" y="470" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">2. 計画𝒫_im = Plan(σ_im, T)を生成</text>
+  <text x="250" y="490" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">3. 報酬マシン ℛ_m を生成</text>
+  
+  <!-- 右側分岐：好奇心ベース探索 -->
+  <rect x="500" y="400" width="300" height="160" rx="5" ry="5" fill="#ffe0c0" stroke="#a04000" stroke-width="1.5"/>
+  <text x="650" y="425" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" font-weight="bold">好奇心ベース探索 (ICM)</text>
+  <text x="650" y="450" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">1. 環境ステップでの状態遷移 s~→s~'</text>
+  <text x="650" y="470" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">2. 新しい遷移を T_k に追加</text>
+  <text x="650" y="490" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">3. 内部好奇心報酬 ℛ_intrinsic を計算</text>
+  <text x="650" y="510" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">4. 方策π更新と探索継続</text>
+  <text x="650" y="530" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">5. 終了条件判定</text>
+  
+  <!-- 矢印 -->
+  <path d="M 450 360 L 450 380 L 250 380 L 250 400" stroke="#000000" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M 450 360 L 450 380 L 650 380 L 650 400" stroke="#000000" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- 下部のオペレータ学習部分 -->
+  <rect x="100" y="600" width="700" height="120" rx="5" ry="5" fill="#d0ffe0" stroke="#00a040" stroke-width="1.5"/>
+  <text x="450" y="625" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" font-weight="bold">シンボリックオペレータ学習</text>
+  <text x="450" y="650" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">1. 新しい遷移 T_k からオペレータを学習</text>
+  <text x="450" y="670" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">2. イマジナリードメイン σ_im を更新</text>
+  <text x="450" y="690" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">3. オペレータのコストとICMネットワークを更新</text>
+  
+  <!-- 収束判定とオペレータ発見 -->
+  <rect x="250" y="760" width="400" height="100" rx="5" ry="5" fill="#e0ffe0" stroke="#00a040" stroke-width="1.5"/>
+  <text x="450" y="785" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" font-weight="bold">収束判定と発見</text>
+  <text x="450" y="810" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">1. 方策πの成功率が閾値ηを超えるか確認</text>
+  <text x="450" y="830" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">2. 適応知識 x_adapting = ⟨I, π, β⟩ を形成</text>
+  <text x="450" y="850" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">3. 発見オペレータ o_discovery を抽象化</text>
+  
+  <!-- 矢印接続 -->
+  <path d="M 250 520 L 250 560 L 450 560 L 450 600" stroke="#000000" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M 650 560 L 650 560 L 450 560 L 450 600" stroke="#000000" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M 450 720 L 450 760" stroke="#000000" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- 結果部分 -->
+  <rect x="300" y="900" width="300" height="60" rx="10" ry="10" fill="#e0ffe0" stroke="#00a040" stroke-width="2"/>
+  <text x="450" y="935" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" font-weight="bold">適応知識または発見オペレータを返却</text>
+  
+  <!-- 矢印 -->
+  <path d="M 450 860 L 450 900" stroke="#000000" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- ループを表す矢印 -->
+  <path d="M 100 560 L 80 560 L 80 340 L 200 340" stroke="#000000" stroke-width="2" fill="none" stroke-dasharray="5,5" marker-end="url(#arrowhead)"/>
+  <text x="90" y="450" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#404040" transform="rotate(-90 90 450)">次のエピソードへ</text>
+  
+  <!-- AI Tips ボックス -->
+  <rect x="600" y="980" width="250" height="180" rx="10" ry="10" fill="#f0f0ff" stroke="#4040a0" stroke-width="2"/>
+  <text x="725" y="1005" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" font-weight="bold" fill="#4040a0">AI Tips</text>
+  <text x="725" y="1035" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#000000" text-decoration="underline">このアルゴリズムのポイント:</text>
+  <text x="625" y="1060" font-family="Arial, sans-serif" font-size="13" fill="#000000">• イマジナリー空間と実環境の両方で学習</text>
+  <text x="625" y="1085" font-family="Arial, sans-serif" font-size="13" fill="#000000">• 好奇心報酬が新しい状態への探索を促進</text>
+  <text x="625" y="1110" font-family="Arial, sans-serif" font-size="13" fill="#000000">• シンボリックな知識と深層強化学習を統合</text>
+  <text x="625" y="1135" font-family="Arial, sans-serif" font-size="13" fill="#000000">• 発見したオペレータは後の計画に再利用可能</text>
+  
+  <!-- アルゴリズムの主要コンポーネント説明 -->
+  <rect x="50" y="980" width="500" height="180" rx="10" ry="10" fill="#f8f8f8" stroke="#404040" stroke-width="1.5"/>
+  <text x="300" y="1005" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" font-weight="bold">アルゴリズムの主要コンポーネント</text>
+  <text x="70" y="1030" font-family="Arial, sans-serif" font-size="13" fill="#000000">• <tspan font-weight="bold">PRM (Planning Reward Machine):</tspan> イマジナリー空間で計画を生成</text>
+  <text x="70" y="1055" font-family="Arial, sans-serif" font-size="13" fill="#000000">• <tspan font-weight="bold">ICM (Intrinsic Curiosity Module):</tspan> 予測誤差に基づく内部報酬を生成</text>
+  <text x="70" y="1080" font-family="Arial, sans-serif" font-size="13" fill="#000000">• <tspan font-weight="bold">オペレータ学習:</tspan> 環境遷移から新しいシンボリックオペレータを抽象化</text>
+  <text x="70" y="1105" font-family="Arial, sans-serif" font-size="13" fill="#000000">• <tspan font-weight="bold">適応知識 (x_adapting):</tspan> インデックス、方策、対応関数の組</text>
+  <text x="70" y="1130" font-family="Arial, sans-serif" font-size="13" fill="#000000">• <tspan font-weight="bold">発見オペレータ (o_discovery):</tspan> 新しく学習したシンボリックオペレータ</text>
+  
+  <!-- 矢印ヘッドの定義 -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#000000"/>
+    </marker>
+  </defs>
+</svg>

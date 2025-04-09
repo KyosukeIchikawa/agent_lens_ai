@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* カスタムスタイル */
+body {
+  font-family: 'Noto Sans JP', 'Roboto', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Roboto', 'Noto Sans JP', sans-serif;
+}
+
+/* 数式表示のスタイル調整 */
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 1rem 0;
+}
+
+/* コンテンツの強調表示 */
+.highlight {
+  background-color: rgba(46, 204, 113, 0.1);
+  border-left: 4px solid #2ecc71;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  border-radius: 0 0.25rem 0.25rem 0;
+}
+
+/* 用語の強調表示 */
+.term {
+  color: #3498db;
+  font-weight: 500;
+  cursor: help;
+  border-bottom: 1px dashed #3498db;
+}
+
+/* 箇条書きのカスタムスタイル */
+.prose ul:not([class^="flex"]):not([class*=" flex"]) {
+  list-style: none;
+  padding-left: 1.5rem;
+  margin: 1.25rem 0;
+}
+
+.prose ul:not([class^="flex"]):not([class*=" flex"]) li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose ul:not([class^="flex"]):not([class*=" flex"]) li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 0.75rem;
+  height: 0.75rem;
+  background-color: #3498db;
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+
+/* 順序付きリストのカスタムスタイル */
+.prose ol {
+  list-style: none;
+  counter-reset: custom-counter;
+  padding-left: 1.5rem;
+  margin: 1.25rem 0;
+}
+
+.prose ol li {
+  position: relative;
+  padding-left: 2rem;
+  margin-bottom: 0.75rem;
+  counter-increment: custom-counter;
+}
+
+.prose ol li::before {
+  content: counter(custom-counter);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: #3498db;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+/* 図表のスタイル */
+figure {
+  margin: 2rem 0;
+}
+
+figcaption {
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  color: #666;
+}
+
+/* レスポンシブ調整 */
+@media (max-width: 768px) {
+  .katex-display {
+    font-size: 90%;
+  }
+}
+
+.feature-icon svg {
+  width: 1rem !important;
+  height: 1rem !important;
+  stroke-width: 1.5;
+}
