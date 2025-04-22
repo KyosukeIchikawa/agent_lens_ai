@@ -22,12 +22,29 @@ fi
 echo "✅ リンクチェックに成功しました。"
 
 echo "🔍 ステージングされたファイルにフォーマットを適用中..."
-npx prettier --write "$(git diff --cached --name-only --diff-filter=ACMR | grep -E '\.(js|jsx|ts|tsx|json|md)$')"
+# ステージングされたファイルを変数に保存
+STAGED_FILES_PRETTIER=$(git diff --cached --name-only --diff-filter=ACMR | grep -E '\.(js|jsx|ts|tsx|json|md|css|svg)$')
+
+if [ -n "$STAGED_FILES_PRETTIER" ]; then
+  # Prettierでフォーマットを適用
+  npx prettier --write $STAGED_FILES_PRETTIER
+  
+  # フォーマットしたファイルを再度ステージングに追加
+  echo "🔄 フォーマットされたファイルを再ステージング中..."
+  git add $STAGED_FILES_PRETTIER
+fi
 
 echo "🔍 ステージングされたファイルのESLintエラーをチェック中（警告は無視）..."
 STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACMR | grep -E '\.(js|jsx|ts|tsx)$')
 if [ -n "$STAGED_FILES" ]; then
-  # エラーのみをチェックする（警告は無視）
+  # ESLintでエラーを修正（--fixオプションを使用）
+  npx eslint --quiet --fix $STAGED_FILES
+  
+  # ESLintで修正したファイルを再度ステージングに追加
+  echo "🔄 ESLintで修正されたファイルを再ステージング中..."
+  git add $STAGED_FILES
+  
+  # 修正後に再度ESLintでチェックし、解決できなかったエラーがあればコミットを中止
   npx eslint --quiet $STAGED_FILES
   
   # エラーがある場合のみコミットを中止
