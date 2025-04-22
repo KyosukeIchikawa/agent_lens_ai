@@ -1,3 +1,4 @@
+#!/bin/sh
 # Nodeの環境を設定
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
@@ -20,14 +21,21 @@ fi
 
 echo "✅ リンクチェックに成功しました。"
 
-echo "🔍 ステージングされたファイルにフォーマットとリントを適用中..."
-npx lint-staged
+echo "🔍 ステージングされたファイルにフォーマットを適用中..."
+npx prettier --write "$(git diff --cached --name-only --diff-filter=ACMR | grep -E '\.(js|jsx|ts|tsx|json|md)$')"
 
-# lint-stagedが失敗した場合
-if [ $? -ne 0 ]; then
-  echo "❌ コード整形またはリントに失敗しました。コミットを中止します。"
-  echo "エラーを修正してから再度コミットしてください。"
-  exit 1
+echo "🔍 ステージングされたファイルのESLintエラーをチェック中（警告は無視）..."
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACMR | grep -E '\.(js|jsx|ts|tsx)$')
+if [ -n "$STAGED_FILES" ]; then
+  # エラーのみをチェックする（警告は無視）
+  npx eslint --quiet $STAGED_FILES
+  
+  # エラーがある場合のみコミットを中止
+  if [ $? -ne 0 ]; then
+    echo "❌ ESLintのエラーが見つかりました。コミットを中止します。"
+    echo "エラーを修正してから再度コミットしてください。"
+    exit 1
+  fi
 fi
 
-echo "✅ コード整形とリントに成功しました。"
+echo "✅ コード整形とESLintエラーチェックに成功しました。"

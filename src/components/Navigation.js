@@ -26,7 +26,7 @@ export default function Navigation({
 }) {
   // Next.jsのルーターを取得（条件付きではなく常に取得）
   const router = useRouter();
-  
+
   // props から直接 prevSection と nextSection が提供されている場合はそれを使用
   if (propsPrevSection !== undefined || propsNextSection !== undefined) {
     const prevLabel = customLabels.prev || (propsPrevSection ? propsPrevSection.title : '前へ');
