@@ -2,7 +2,7 @@ import React from 'react';
 
 /**
  * 実験テーブルを表示するコンポーネント
- * 
+ *
  * @param {string} title - テーブルのタイトル
  * @param {string[]} columns - カラム名の配列
  * @param {string[][]} rows - 行データの二次元配列
@@ -10,7 +10,7 @@ import React from 'react';
  */
 export default function ExperimentTable({ title, columns, rows, highlight = false }) {
   if (!columns || !Array.isArray(columns) || !rows || !Array.isArray(rows)) {
-    console.error("ExperimentTable requires valid columns and rows arrays");
+    console.error('ExperimentTable requires valid columns and rows arrays');
     return <div className="text-red-500">Table data is missing or invalid</div>;
   }
 
@@ -29,7 +29,7 @@ export default function ExperimentTable({ title, columns, rows, highlight = fals
         </thead>
         <tbody>
           {rows.map((row, rowIndex) => (
-            <tr key={rowIndex} className={rowIndex % 2 === 0 ? "bg-white" : "bg-gray-50"}>
+            <tr key={rowIndex} className={rowIndex % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
               {row.map((cell, cellIndex) => (
                 <td key={cellIndex} className="px-4 py-2 border border-primary/20">
                   {cell}

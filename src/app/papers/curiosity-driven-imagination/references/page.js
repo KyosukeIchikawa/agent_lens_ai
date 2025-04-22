@@ -10,11 +10,8 @@ import ReferenceItem from '@/components/ReferenceItem';
 export default function ReferencesPage() {
   return (
     <article className="prose max-w-none">
-      <SectionHeader 
-        title="References" 
-        subtitle="参考文献"
-      />
-      
+      <SectionHeader title="References" subtitle="参考文献" />
+
       <p>
         本ページでは、論文で引用されている参考文献を研究分野ごとに分類して整理しています。
         各参考文献には、本論文内での引用箇所や重要性に基づいて補足説明を付記しています。
@@ -32,7 +29,7 @@ export default function ReferencesPage() {
           doi="10.1016/0004-3702(71)90010-5"
           description="古典的な計画アルゴリズムであるSTRIPSを提案した論文。本論文のシンボリック計画の基礎となる概念を提供しています。"
         />
-        
+
         <ReferenceItem
           id="15"
           authors="Konidaris, G., Kaelbling, L. P., & Lozano-Perez, T."
@@ -44,7 +41,7 @@ export default function ReferencesPage() {
           doi="10.1613/jair.5575"
           description="低レベルのスキルから高レベルのシンボリック表現を学習する手法を提案。Bi-Modelのシンボリック抽象化に関連しています。"
         />
-        
+
         <ReferenceItem
           id="25"
           authors="Lu, H., & Scheutz, M."
@@ -55,7 +52,7 @@ export default function ReferencesPage() {
           url="https://dl.acm.org/doi/10.5555/3535850.3535941"
           description="HyGOALを提案した論文。本研究のベースラインとして使用されており、実験設定とベースライン結果を提供しています。"
         />
-        
+
         <ReferenceItem
           id="40"
           authors="McDermott, D., Ghallab, M., Howe, A., Knoblock, C., Ram, A., Veloso, M., Weld, D., & Wilkins, D."
@@ -78,7 +75,7 @@ export default function ReferencesPage() {
           url="https://proceedings.mlr.press/v70/pathak17a.html"
           description="内発的好奇心モジュール（ICM）を提案した論文。本研究のICMはこの手法をベースにしています。"
         />
-        
+
         <ReferenceItem
           id="18"
           authors="Bellemare, M. G., Srinivasan, S., Ostrovski, G., Schaul, T., Saxton, D., & Munos, R."
@@ -89,7 +86,7 @@ export default function ReferencesPage() {
           url="https://proceedings.neurips.cc/paper/2016/hash/afda332245e2af431abd9939fe7749a3-Abstract.html"
           description="カウントベースの探索と内発的モチベーションを統合する手法を提案。探索戦略の文脈で関連しています。"
         />
-        
+
         <ReferenceItem
           id="20"
           authors="Burda, Y., Edwards, H., Storkey, A., & Klimov, O."
@@ -112,7 +109,7 @@ export default function ReferencesPage() {
           doi="10.1109/ADPRL.2014.7010608"
           description="スパースガウス過程モデルに基づく近似的なリアルタイム最適制御を提案。RapidLearnの基礎となる研究です。"
         />
-        
+
         <ReferenceItem
           id="23"
           authors="Vasilopoulos, V., Vega-Brown, W., Arslan, O., Roy, N., & Koditschek, D. E."
@@ -123,7 +120,7 @@ export default function ReferencesPage() {
           doi="10.1109/ICRA.2018.8461167"
           description="部分的に既知の環境でのセンサーベースのリアクティブシンボリック計画を提案。LTL&GOの基礎となる研究です。"
         />
-        
+
         <ReferenceItem
           id="41"
           authors="Zhu, Y., Wong, J., Mandlekar, A., & Martín-Martín, R."
@@ -132,7 +129,7 @@ export default function ReferencesPage() {
           arxivId="2009.12293"
           description="本研究の実験環境であるRoboSuiteを提案した論文。「Pick and Place Can」タスクを含むロボット学習のためのモジュラーシミュレーションフレームワークとベンチマークを提供しています。"
         />
-        
+
         <ReferenceItem
           id="42"
           authors="Mahmood, A. R., Korenkevych, D., Vasan, G., Ma, W., & Bergstra, J."
@@ -156,7 +153,7 @@ export default function ReferencesPage() {
           url="https://proceedings.mlr.press/v80/haarnoja18b.html"
           description="本研究のベースラインとして使用されたSoft Actor-Critic（SAC）アルゴリズムを提案した論文。"
         />
-        
+
         <ReferenceItem
           id="31"
           authors="Andrychowicz, M., Wolski, F., Ray, A., Schneider, J., Fong, R., Welinder, P., McGrew, B., Tobin, J., Abbeel, P., & Zaremba, W."
@@ -167,7 +164,7 @@ export default function ReferencesPage() {
           url="https://proceedings.neurips.cc/paper/2017/hash/453fadbd8a1a3af50a9df4df899537b5-Abstract.html"
           description="本研究のベースラインとして使用されたHindsight Experience Replay（HER）を提案した論文。スパース報酬環境での学習を効率化する手法です。"
         />
-        
+
         <ReferenceItem
           id="35"
           authors="Silver, D., Hubert, T., Schrittwieser, J., Antonoglou, I., Lai, M., Guez, A., Lanctot, M., Sifre, L., Kumaran, D., Graepel, T., Lillicrap, T., Simonyan, K., & Hassabis, D."
@@ -179,7 +176,7 @@ export default function ReferencesPage() {
           doi="10.1126/science.aar6404"
           description="AlphaZeroを提案した論文。計画と学習の統合に関連しています。"
         />
-        
+
         <ReferenceItem
           id="38"
           authors="Araki, B., Vodrahalli, K., Leech, T., Vasile, C. I., Donahue, M., & Roy, D."
@@ -189,7 +186,7 @@ export default function ReferencesPage() {
           url="https://api.semanticscholar.org/CorpusID:16352285"
           description="環境に依存しないタスク仕様のためのGLTL（Grounded Linear Temporal Logic）を提案した論文。シンボリック抽象化に関連します。"
         />
-        
+
         <ReferenceItem
           id="39"
           authors="Hasanbeig, H., Jeppu, N. Y., Abate, A., Melham, T., & Kroening, D."
@@ -210,7 +207,7 @@ export default function ReferencesPage() {
           url="https://www.aaai.org/ocs/index.php/IAAI/IAAI17/paper/view/14476"
           description="インテリジェントな自律システムのための説明可能なエージェンシーに関する論文。オープンワールド適応の文脈で関連しています。"
         />
-        
+
         <ReferenceItem
           id="8"
           authors="Albrecht, S. V., & Stone, P."

@@ -2,7 +2,7 @@ import React from 'react';
 
 /**
  * アルゴリズムや疑似コードを表示するためのコンポーネント
- * 
+ *
  * @param {string} title - アルゴリズムのタイトル
  * @param {string[]} steps - アルゴリズムのステップ（配列）
  * @param {string[]} lines - アルゴリズムの行（配列）- stepsの代替として使用可能
@@ -18,13 +18,13 @@ export default function AlgorithmBlock({
   number,
   caption,
   showLineNumbers = true,
-  className = "",
+  className = '',
 }) {
   // stepsプロパティが提供された場合はそれを使用し、そうでなければlinesプロパティを使用
   const algorithmLines = steps || lines || [];
-  
+
   if (algorithmLines.length === 0) {
-    console.error("AlgorithmBlock requires steps or lines array with content");
+    console.error('AlgorithmBlock requires steps or lines array with content');
     return <div className="text-red-500">Algorithm content is missing</div>;
   }
 
@@ -45,20 +45,14 @@ export default function AlgorithmBlock({
                       {index + 1}
                     </td>
                   )}
-                  <td className="whitespace-pre">
-                    {line}
-                  </td>
+                  <td className="whitespace-pre">{line}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
       </div>
-      {caption && (
-        <div className="text-sm text-primary mt-2 text-center">
-          {caption}
-        </div>
-      )}
+      {caption && <div className="text-sm text-primary mt-2 text-center">{caption}</div>}
     </div>
   );
 }

@@ -1,20 +1,32 @@
 /**
  * グラフチャート関連のユーティリティ関数と設定
- * 
+ *
  * このモジュールは、Chart.jsを使用したグラフ表示に必要な共通設定や
  * ユーティリティ関数を提供します。
  */
 
 // デフォルトカラー（サーバーサイドレンダリング用）
 export const defaultColors = {
-  primary: { main: 'rgba(52, 152, 219, 0.7)', border: 'rgba(52, 152, 219, 1)', light: 'rgba(52, 152, 219, 0.2)' },
-  secondary: { main: 'rgba(46, 204, 113, 0.7)', border: 'rgba(46, 204, 113, 1)', light: 'rgba(46, 204, 113, 0.2)' },
-  accent: { main: 'rgba(231, 76, 60, 0.7)', border: 'rgba(231, 76, 60, 1)', light: 'rgba(231, 76, 60, 0.2)' },
+  primary: {
+    main: 'rgba(52, 152, 219, 0.7)',
+    border: 'rgba(52, 152, 219, 1)',
+    light: 'rgba(52, 152, 219, 0.2)',
+  },
+  secondary: {
+    main: 'rgba(46, 204, 113, 0.7)',
+    border: 'rgba(46, 204, 113, 1)',
+    light: 'rgba(46, 204, 113, 0.2)',
+  },
+  accent: {
+    main: 'rgba(231, 76, 60, 0.7)',
+    border: 'rgba(231, 76, 60, 1)',
+    light: 'rgba(231, 76, 60, 0.2)',
+  },
 };
 
 /**
  * DOM操作でTailwindのカスタムカラーを取得する関数
- * 
+ *
  * @param {string} colorName - 取得するカラー名（'primary', 'secondary', 'accent'など）
  * @param {number} opacity - 透明度（0.0～1.0）
  * @returns {string} - RGBA形式のカラー文字列
@@ -28,7 +40,7 @@ export const getColorWithOpacity = (colorName, opacity = 1) => {
 
     // すでに作成済みの要素を再利用するか確認
     let el = document.getElementById(`color-helper-${colorName}`);
-    
+
     // 要素が存在しない場合は新しく作成
     if (!el) {
       el = document.createElement('div');
@@ -39,16 +51,16 @@ export const getColorWithOpacity = (colorName, opacity = 1) => {
       el.style.pointerEvents = 'none';
       document.body.appendChild(el);
     }
-    
+
     // スタイルを計算
     const color = window.getComputedStyle(el).color;
-    
+
     // RGB値を抽出してRGBA形式に変換
     const rgbMatch = color.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
     if (rgbMatch) {
       return `rgba(${rgbMatch[1]}, ${rgbMatch[2]}, ${rgbMatch[3]}, ${opacity})`;
     }
-    
+
     return color;
   } catch (e) {
     console.warn('Error getting color:', e);
@@ -58,27 +70,36 @@ export const getColorWithOpacity = (colorName, opacity = 1) => {
 
 /**
  * カラー名と透明度からデフォルトカラーを返す
- * 
+ *
  * @param {string} colorName - 取得するカラー名（'primary', 'secondary', 'accent'など）
  * @param {number} opacity - 透明度（0.0～1.0）
  * @returns {string} - RGBA形式のカラー文字列
  */
 export const getDefaultColor = (colorName, opacity = 1) => {
   if (colorName === 'primary') {
-    return opacity === 1 ? 'rgba(52, 152, 219, 1)' : 
-          opacity === 0.2 ? 'rgba(52, 152, 219, 0.2)' : 'rgba(52, 152, 219, 0.7)';
+    return opacity === 1
+      ? 'rgba(52, 152, 219, 1)'
+      : opacity === 0.2
+        ? 'rgba(52, 152, 219, 0.2)'
+        : 'rgba(52, 152, 219, 0.7)';
   } else if (colorName === 'secondary') {
-    return opacity === 1 ? 'rgba(46, 204, 113, 1)' : 
-          opacity === 0.2 ? 'rgba(46, 204, 113, 0.2)' : 'rgba(46, 204, 113, 0.7)';
+    return opacity === 1
+      ? 'rgba(46, 204, 113, 1)'
+      : opacity === 0.2
+        ? 'rgba(46, 204, 113, 0.2)'
+        : 'rgba(46, 204, 113, 0.7)';
   } else {
-    return opacity === 1 ? 'rgba(231, 76, 60, 1)' : 
-          opacity === 0.2 ? 'rgba(231, 76, 60, 0.2)' : 'rgba(231, 76, 60, 0.7)';
+    return opacity === 1
+      ? 'rgba(231, 76, 60, 1)'
+      : opacity === 0.2
+        ? 'rgba(231, 76, 60, 0.2)'
+        : 'rgba(231, 76, 60, 0.7)';
   }
 };
 
 /**
  * TailwindカラーをChart.jsで使用するためのオブジェクトを生成する
- * 
+ *
  * @returns {Object} Chart.jsで使用するカラーオブジェクト
  */
 export const getChartColors = () => {
@@ -113,7 +134,7 @@ export const getChartColors = () => {
 
 /**
  * 棒グラフの共通オプション設定を生成する
- * 
+ *
  * @param {Object} colors - カラー設定オブジェクト
  * @param {string} title - グラフのタイトル
  * @param {string} yAxisTitle - Y軸のタイトル
@@ -126,7 +147,7 @@ export const getBarChartOptions = (colors, title, yAxisTitle, yAxisMax = null) =
     maintainAspectRatio: true,
     animation: {
       duration: 1000,
-      easing: 'easeOutQuad'
+      easing: 'easeOutQuad',
     },
     plugins: {
       legend: {
@@ -137,8 +158,8 @@ export const getBarChartOptions = (colors, title, yAxisTitle, yAxisMax = null) =
         text: title,
         color: colors.primary.border,
         font: {
-          weight: 'bold'
-        }
+          weight: 'bold',
+        },
       },
     },
     scales: {
@@ -151,14 +172,14 @@ export const getBarChartOptions = (colors, title, yAxisTitle, yAxisMax = null) =
         },
         ticks: {
           color: colors.primary.main,
-        }
+        },
       },
       x: {
         ticks: {
           color: colors.primary.main,
-        }
-      }
-    }
+        },
+      },
+    },
   };
 
   // Y軸の最大値が指定されている場合、設定を追加
@@ -171,7 +192,7 @@ export const getBarChartOptions = (colors, title, yAxisTitle, yAxisMax = null) =
 
 /**
  * 折れ線グラフの共通オプション設定を生成する
- * 
+ *
  * @param {Object} colors - カラー設定オブジェクト
  * @param {string} title - グラフのタイトル
  * @param {string} yAxisTitle - Y軸のタイトル
@@ -184,7 +205,7 @@ export const getLineChartOptions = (colors, title, yAxisTitle, xAxisTitle) => {
     maintainAspectRatio: true,
     animation: {
       duration: 1200,
-      easing: 'easeOutQuad'
+      easing: 'easeOutQuad',
     },
     plugins: {
       legend: {
@@ -195,8 +216,8 @@ export const getLineChartOptions = (colors, title, yAxisTitle, xAxisTitle) => {
         text: title,
         color: colors.primary.border,
         font: {
-          weight: 'bold'
-        }
+          weight: 'bold',
+        },
       },
     },
     scales: {
@@ -209,7 +230,7 @@ export const getLineChartOptions = (colors, title, yAxisTitle, xAxisTitle) => {
         },
         ticks: {
           color: colors.primary.main,
-        }
+        },
       },
       x: {
         title: {
@@ -219,8 +240,8 @@ export const getLineChartOptions = (colors, title, yAxisTitle, xAxisTitle) => {
         },
         ticks: {
           color: colors.primary.main,
-        }
-      }
-    }
+        },
+      },
+    },
   };
 };

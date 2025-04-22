@@ -11,10 +11,13 @@
     "start": "next start",
     "export": "next export",
     "lint": "next lint",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "check-format": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "check-links": "node src/scripts/check-links.js",
-    "precommit": "npm run check-links",
+    "precommit": "npm run check-links && npm run check-format && npm run lint",
     "prebuild": "npm run check-links",
-    "visualize": "node src/scripts/open-browser.js"
+    "visualize": "node src/scripts/open-browser.js",
+    "prepare": "husky install"
   },
   "dependencies": {
     "better-react-mathjax": "^2.1.0",
@@ -35,8 +38,21 @@
     "autoprefixer": "^10.4.21",
     "eslint": "^8.0.0",
     "eslint-config-next": "^14.0.0",
+    "eslint-config-prettier": "^10.1.2",
+    "eslint-plugin-prettier": "^5.2.6",
     "husky": "^9.1.7",
+    "lint-staged": "^15.5.1",
     "open-cli": "^7.2.0",
-    "postcss": "^8.5.3"
+    "postcss": "^8.5.3",
+    "prettier": "^3.5.3"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
   }
 }

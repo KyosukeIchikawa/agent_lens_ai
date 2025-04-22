@@ -1,6 +1,6 @@
 /**
  * 論文データを集約したインデックスファイル
- * 
+ *
  * 新しい論文を追加する場合は、以下の手順に従ってください：
  * 1. _template.js をコピーして、papers/ フォルダに新しいファイルを作成
  * 2. ファイル名は論文のIDに基づいて命名（例: your-paper-id.js）
@@ -51,6 +51,6 @@ export function getPaperById(id) {
 export function getPaperSection(paperId, sectionId) {
   const paper = getPaperById(paperId);
   if (!paper) return null;
-  
+
   return paper.sections.find(section => section.id === sectionId) || null;
 }

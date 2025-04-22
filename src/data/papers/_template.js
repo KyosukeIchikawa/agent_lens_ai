@@ -1,6 +1,6 @@
 /**
  * 論文データのテンプレート
- * 
+ *
  * 新しい論文を追加する際は、このファイルをコピーして使用してください。
  * ファイル名は論文のIDに基づいて命名してください（例: your-paper-id.js）
  */
@@ -26,44 +26,44 @@ const paper = {
     {
       id: 'background',
       title: '背景',
-      path: '/papers/your-paper-id/background'
+      path: '/papers/your-paper-id/background',
     },
     {
       id: 'related-work',
       title: '関連研究',
-      path: '/papers/your-paper-id/related-work'
+      path: '/papers/your-paper-id/related-work',
     },
     {
       id: 'method',
       title: '提案手法',
-      path: '/papers/your-paper-id/method'
+      path: '/papers/your-paper-id/method',
     },
     {
       id: 'experiments',
       title: '実験',
-      path: '/papers/your-paper-id/experiments'
+      path: '/papers/your-paper-id/experiments',
     },
     {
       id: 'results',
       title: '結果',
-      path: '/papers/your-paper-id/results'
+      path: '/papers/your-paper-id/results',
     },
     {
       id: 'discussion',
       title: '考察',
-      path: '/papers/your-paper-id/discussion'
+      path: '/papers/your-paper-id/discussion',
     },
     {
       id: 'conclusion',
       title: '結論',
-      path: '/papers/your-paper-id/conclusion'
+      path: '/papers/your-paper-id/conclusion',
     },
     {
       id: 'references',
       title: '参考文献',
-      path: '/papers/your-paper-id/references'
-    }
-  ]
+      path: '/papers/your-paper-id/references',
+    },
+  ],
 };
 
 export default paper;

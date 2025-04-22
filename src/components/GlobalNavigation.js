@@ -16,7 +16,7 @@ export default function GlobalNavigation() {
         <Link href="/" className="text-xl font-bold text-primary">
           AgentLens: AI
         </Link>
-        
+
         {/* ハンバーガーメニューボタン（モバイル用） */}
         <button
           className="block md:hidden text-text"
@@ -47,29 +47,23 @@ export default function GlobalNavigation() {
             )}
           </svg>
         </button>
-        
+
         {/* デスクトップ用ナビゲーション */}
         <nav className="hidden md:block">
           <ul className="flex flex-row space-x-8">
             <li>
-              <Link 
-                href="/" 
-                className="text-text hover:text-primary"
-              >
+              <Link href="/" className="text-text hover:text-primary">
                 ホーム
               </Link>
             </li>
             <li>
-              <Link 
-                href="/papers" 
-                className="text-text hover:text-primary"
-              >
+              <Link href="/papers" className="text-text hover:text-primary">
                 論文一覧
               </Link>
             </li>
             <li>
-              <Link 
-                href="https://github.com/KyosukeIchikawa/agent_lens_ai" 
+              <Link
+                href="https://github.com/KyosukeIchikawa/agent_lens_ai"
                 className="text-text hover:text-primary"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -80,7 +74,7 @@ export default function GlobalNavigation() {
           </ul>
         </nav>
       </div>
-      
+
       {/* モバイル用メニュー */}
       <div
         className={`${
@@ -90,8 +84,8 @@ export default function GlobalNavigation() {
         <nav className="container mx-auto px-4 py-2">
           <ul className="flex flex-col space-y-3 pb-4">
             <li>
-              <Link 
-                href="/" 
+              <Link
+                href="/"
                 className="block py-2 text-text hover:text-primary"
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -99,8 +93,8 @@ export default function GlobalNavigation() {
               </Link>
             </li>
             <li>
-              <Link 
-                href="/papers" 
+              <Link
+                href="/papers"
                 className="block py-2 text-text hover:text-primary"
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -108,8 +102,8 @@ export default function GlobalNavigation() {
               </Link>
             </li>
             <li>
-              <Link 
-                href="https://github.com/KyosukeIchikawa/agent_lens_ai" 
+              <Link
+                href="https://github.com/KyosukeIchikawa/agent_lens_ai"
                 className="block py-2 text-text hover:text-primary"
                 target="_blank"
                 rel="noopener noreferrer"

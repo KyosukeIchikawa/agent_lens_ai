@@ -5,7 +5,7 @@ import { getFigNum } from '@/utils/figureUtils';
 /**
  * 論文の図表を表示するコンポーネント
  * 論文データから指定したIDの図表を取得して表示する、または直接パラメータで指定された図表を表示する
- * 
+ *
  * @param {Object} props - コンポーネントのプロパティ
  * @param {Object} [props.paper] - 論文データオブジェクト（IDベースの表示用）
  * @param {string} [props.figureId] - 表示する図表のID（IDベースの表示用）
@@ -23,7 +23,7 @@ import { getFigNum } from '@/utils/figureUtils';
  * @param {string} [props.containerClassName] - 図表コンテナのCSSクラス
  * @returns {JSX.Element|null} - 図表コンポーネントまたはnull（図表が見つからない場合）
  */
-export default function PaperFigure({ 
+export default function PaperFigure({
   paper,
   figureId,
   children,
@@ -33,22 +33,22 @@ export default function PaperFigure({
   height,
   caption,
   paperFigNumber,
-  localFigNumber, 
+  localFigNumber,
   isQuoted = false,
-  className = "",
-  captionClassName = "text-primary",
-  containerClassName = "bg-white p-4 rounded-lg mb-2 shadow-inner"
+  className = '',
+  captionClassName = 'text-primary',
+  containerClassName = 'bg-white p-4 rounded-lg mb-2 shadow-inner',
 }) {
   /**
    * 図表データに基づいて適切なパスを返す
-   * 
+   *
    * @param {Object} figure - 図表データオブジェクト
    * @param {string} paperId - 論文ID
    * @returns {string} - 図表のパス
    */
   const getFigurePath = (figure, paperId) => {
     if (!figure) return '';
-    
+
     const folder = figure.isQuoted ? 'quoted' : 'created';
     // プロダクション環境でのベースパスを考慮
     const basePath = process.env.NODE_ENV === 'production' ? '/agent_lens_ai' : '';
@@ -57,26 +57,26 @@ export default function PaperFigure({
 
   // 論文データと図表IDが指定されている場合、論文データから図表情報を取得
   let figureProps = {};
-  
+
   if (paper && figureId) {
     const figure = paper.figures?.find(fig => fig.id === figureId);
-    
+
     // 図表が見つからない場合
     if (!figure) {
       console.warn(`図表ID "${figureId}" が論文 "${paper.id}" に見つかりません`);
       return null;
     }
-    
+
     // 図表データから必要な情報を取得
     const figurePath = getFigurePath(figure, paper.id);
-    
+
     figureProps = {
       src: figurePath,
       alt: figure.altText || figure.caption,
       caption: figure.caption,
       paperFigNumber: figure.paperFigNumber,
       localFigNumber: figure.localFigNumber,
-      isQuoted: figure.isQuoted
+      isQuoted: figure.isQuoted,
     };
   } else {
     // 直接プロパティとして渡された値を使用
@@ -86,37 +86,39 @@ export default function PaperFigure({
       caption,
       paperFigNumber,
       localFigNumber,
-      isQuoted
+      isQuoted,
     };
   }
-  
+
   // 引用元の表示用スタイル
-  const quotedStyle = figureProps.isQuoted
-    ? "border-l-4 border-accent-light pl-2"
-    : "";
-  
+  const quotedStyle = figureProps.isQuoted ? 'border-l-4 border-accent-light pl-2' : '';
+
   // 論文と図表情報からfigNumberを生成するためのデータを準備
   const figData = {
-    figures: paper?.figures || [{
-      id: figureId || 'temp',
-      localFigNumber: figureProps.localFigNumber,
-      paperFigNumber: figureProps.paperFigNumber
-    }]
+    figures: paper?.figures || [
+      {
+        id: figureId || 'temp',
+        localFigNumber: figureProps.localFigNumber,
+        paperFigNumber: figureProps.paperFigNumber,
+      },
+    ],
   };
 
   // 引用の場合の表示テキスト
-  const quotedText = figureProps.isQuoted ? "（原論文より引用）" : "";
+  const quotedText = figureProps.isQuoted ? '（原論文より引用）' : '';
 
   return (
     <figure className={`text-center mx-auto ${className}`}>
-      <div className={`${containerClassName} ${figureProps.isQuoted ? "bg-primary-light" : "bg-white"}`}>
+      <div
+        className={`${containerClassName} ${figureProps.isQuoted ? 'bg-primary-light' : 'bg-white'}`}
+      >
         {children ? (
           children
         ) : figureProps.src ? (
           <div className="flex justify-center">
             <Image
               src={figureProps.src}
-              alt={figureProps.alt || figureProps.caption || "図表"}
+              alt={figureProps.alt || figureProps.caption || '図表'}
               width={width || 800}
               height={height || 500}
               className="max-w-full h-auto"
@@ -124,18 +126,20 @@ export default function PaperFigure({
           </div>
         ) : null}
       </div>
-      
+
       {/* 図表番号は常に表示 */}
       <figcaption className={`text-sm mt-2 ${captionClassName} ${quotedStyle}`}>
         <span className="font-semibold">
-          {paper && figureId 
+          {paper && figureId
             ? getFigNum(paper, figureId, { includePaperFigNumber: true })
             : figureProps.localFigNumber || figureProps.paperFigNumber
               ? getFigNum(figData, 'temp', { includePaperFigNumber: true })
-              : ""}
+              : ''}
         </span>
         {figureProps.caption && (
-          <>: {figureProps.caption} {quotedText}</>
+          <>
+            : {figureProps.caption} {quotedText}
+          </>
         )}
       </figcaption>
     </figure>

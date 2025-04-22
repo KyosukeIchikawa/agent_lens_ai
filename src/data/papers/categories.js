@@ -15,20 +15,20 @@ export const categories = [
     id: 'robotics',
     name: 'ロボティクス',
     description: 'ロボットの知能化や自律性に関する研究',
-    colorClass: 'bg-primary-light'
+    colorClass: 'bg-primary-light',
   },
   {
     id: 'reinforcement-learning',
     name: '強化学習',
     description: 'エージェントが環境と相互作用することで最適な行動を学習する手法',
-    colorClass: 'bg-secondary-light'
+    colorClass: 'bg-secondary-light',
   },
   {
     id: 'symbolic-ai',
     name: 'シンボリックAI',
     description: '記号的表現と論理的推論に基づく人工知能手法',
-    colorClass: 'bg-accent-light'
-  }
+    colorClass: 'bg-accent-light',
+  },
 ];
 
 /**

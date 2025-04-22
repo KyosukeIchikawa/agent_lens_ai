@@ -20,7 +20,7 @@ const nextConfig = {
   // ルーターエラーを無視するために静的エクスポート設定を追加
   experimental: {
     // ビルド中のNextRouterエラーを無視する
-    missingSuspenseWithCSRBailout: true
+    missingSuspenseWithCSRBailout: true,
   },
 };
 

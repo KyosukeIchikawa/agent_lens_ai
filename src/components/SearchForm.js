@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { useState, useEffect } from 'react';
 
@@ -18,7 +18,7 @@ export default function SearchForm({ onSearch, initialQuery = '' }) {
     }
   }, [initialQuery]);
 
-  const handleSearch = (e) => {
+  const handleSearch = e => {
     e.preventDefault();
     if (onSearch && searchQuery.trim()) {
       onSearch(searchQuery.trim());
@@ -30,7 +30,7 @@ export default function SearchForm({ onSearch, initialQuery = '' }) {
       <input
         type="text"
         value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
+        onChange={e => setSearchQuery(e.target.value)}
         placeholder="論文のキーワードで検索..."
         className="flex-grow px-4 py-3 rounded-l-lg text-text border-2 border-primary focus:outline-none focus:ring-2 focus:ring-primary"
         aria-label="検索キーワード"

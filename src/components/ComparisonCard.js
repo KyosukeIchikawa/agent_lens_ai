@@ -3,10 +3,10 @@ import { MathJax } from 'better-react-mathjax';
 
 /**
  * 実験結果や手法の比較を表示するためのカードコンポーネント
- * 
+ *
  * 異なる手法やモデルの結果を視覚的に比較するために使用します。
  * 数値や視覚的な指標を使って比較情報を提供します。
- * 
+ *
  * @param {Object} props
  * @param {string} props.title - 比較カードのタイトル
  * @param {Array} props.items - 比較する項目の配列
@@ -27,7 +27,7 @@ export default function ComparisonCard({
 }) {
   // 最大値を計算して相対的なスケールを作成
   const maxValue = Math.max(...items.map(item => Number(item.value) || 0));
-  
+
   // 色情報
   const getBarColor = (isHighlighted, index) => {
     if (isHighlighted) {
@@ -37,9 +37,9 @@ export default function ComparisonCard({
     const colors = ['bg-primary', 'bg-secondary', 'bg-primary-light', 'bg-secondary-light'];
     return colors[index % colors.length];
   };
-  
+
   // 数値が文字列やTeX数式の場合にも対応
-  const renderValue = (value) => {
+  const renderValue = value => {
     if (typeof value === 'string' && value.includes('\\')) {
       // TeX式の場合はMathJaxで表示
       return <MathJax>{`\\(${value}\\)`}</MathJax>;
@@ -58,16 +58,14 @@ export default function ComparisonCard({
           </p>
         )}
       </div>
-      
+
       {/* 比較アイテム一覧 */}
       <div className="p-4">
         <ul className="space-y-3">
           {items.map((item, index) => {
             // パーセンテージスケールを計算
-            const percentage = maxValue > 0 
-              ? (Number(item.value) || 0) / maxValue * 100
-              : 0;
-            
+            const percentage = maxValue > 0 ? ((Number(item.value) || 0) / maxValue) * 100 : 0;
+
             return (
               <li key={index} className="relative">
                 <div className="flex items-center justify-between mb-1">
@@ -84,15 +82,15 @@ export default function ComparisonCard({
                     {metricUnit && <span className="ml-1 text-text-light">{metricUnit}</span>}
                   </div>
                 </div>
-                
+
                 {/* プログレスバー */}
                 <div className="w-full bg-progress-bg rounded-full h-2.5">
-                  <div 
+                  <div
                     className={`h-2.5 rounded-full ${getBarColor(item.isHighlighted, index)}`}
                     style={{ width: `${percentage}%` }}
                   ></div>
                 </div>
-                
+
                 {/* 追加説明 */}
                 {item.description && (
                   <p className="mt-1 text-xs text-text-light">{item.description}</p>
@@ -101,12 +99,10 @@ export default function ComparisonCard({
             );
           })}
         </ul>
-        
+
         {/* 全体の説明 */}
-        {description && (
-          <p className="mt-4 text-sm text-text-light">{description}</p>
-        )}
-        
+        {description && <p className="mt-4 text-sm text-text-light">{description}</p>}
+
         {/* 凡例 */}
         {legendConfig && (
           <div className="mt-4 pt-3 border-t border-border-light">
@@ -114,7 +110,7 @@ export default function ComparisonCard({
             <div className="flex flex-wrap gap-4">
               {legendConfig.items.map((legend, idx) => (
                 <div key={idx} className="flex items-center">
-                  <span 
+                  <span
                     className={`inline-block w-3 h-3 mr-2 rounded-full ${legend.color || getBarColor(false, idx)}`}
                   ></span>
                   <span className="text-xs text-text-light">{legend.label}</span>

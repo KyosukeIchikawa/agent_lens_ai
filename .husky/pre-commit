@@ -1,5 +1,12 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
+# Nodeの環境を設定
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+# .nvmrcがあれば、適切なNodeバージョンを使用
+if [ -f ".nvmrc" ]; then
+  nvm use
+fi
 
 echo "🔍 通常のリンクチェックを実行中..."
 npm run check-links
@@ -12,3 +19,15 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "✅ リンクチェックに成功しました。"
+
+echo "🔍 ステージングされたファイルにフォーマットとリントを適用中..."
+npx lint-staged
+
+# lint-stagedが失敗した場合
+if [ $? -ne 0 ]; then
+  echo "❌ コード整形またはリントに失敗しました。コミットを中止します。"
+  echo "エラーを修正してから再度コミットしてください。"
+  exit 1
+fi
+
+echo "✅ コード整形とリントに成功しました。"

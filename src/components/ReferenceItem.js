@@ -20,7 +20,7 @@ function extractArxivId(url) {
  */
 function getLinkType(url) {
   if (!url) return '';
-  
+
   if (url.includes('arxiv.org')) {
     const arxivId = extractArxivId(url);
     return arxivId || 'arXiv';
@@ -39,14 +39,14 @@ function getLinkType(url) {
   } else if (url.includes('semanticscholar.org')) {
     return 'Semantic Scholar';
   }
-  
+
   // その他のURLの場合は空文字を返す（リンクをタイトルのみにするため）
   return '';
 }
 
 /**
  * 参考文献アイテムのコンポーネント
- * 
+ *
  * @param {string} id - 参考文献のID
  * @param {string} title - 論文タイトル
  * @param {string} authors - 著者（文字列または配列）
@@ -81,25 +81,24 @@ export default function ReferenceItem({
 }) {
   // authors が文字列なら配列に変換、配列なら維持
   const authorList = Array.isArray(authors) ? authors : [authors];
-  
+
   // venue は journal, conference, institution のいずれかを使用
   const venue = journal || conference || institution || '';
 
   // 優先順位に従ってリンク先URLを決定（url → doi → arxivId の順）
-  const linkUrl = url || (doi ? `https://doi.org/${doi}` : (arxivId ? `https://arxiv.org/abs/${arxivId}` : null));
+  const linkUrl =
+    url || (doi ? `https://doi.org/${doi}` : arxivId ? `https://arxiv.org/abs/${arxivId}` : null);
 
   return (
     <div className="py-3 border-b border-primary/10 last:border-b-0">
       <div className="flex gap-3">
-        <div className="text-sm font-medium w-8 text-primary shrink-0">
-          [{id}]
-        </div>
+        <div className="text-sm font-medium w-8 text-primary shrink-0">[{id}]</div>
         <div>
           {linkUrl ? (
             <h3 className="font-medium text-primary">
-              <a 
-                href={linkUrl} 
-                target="_blank" 
+              <a
+                href={linkUrl}
+                target="_blank"
                 rel="noopener noreferrer"
                 className="hover:underline cursor-pointer"
               >
@@ -107,13 +106,9 @@ export default function ReferenceItem({
               </a>
             </h3>
           ) : (
-            <h3 className="font-medium text-primary">
-              {title}
-            </h3>
+            <h3 className="font-medium text-primary">{title}</h3>
           )}
-          <p className="text-sm text-text mt-1">
-            {authorList.join(', ')}
-          </p>
+          <p className="text-sm text-text mt-1">{authorList.join(', ')}</p>
           <p className="text-sm text-text">
             {venue && <span>{venue}</span>}
             {volume && <span>, {volume}</span>}
@@ -121,11 +116,7 @@ export default function ReferenceItem({
             {pages && <span>, pp. {pages}</span>}
             {year && <span>, {year}</span>}
           </p>
-          {description && (
-            <p className="mt-2 text-sm text-gray-600 italic">
-              {description}
-            </p>
-          )}
+          {description && <p className="mt-2 text-sm text-gray-600 italic">{description}</p>}
         </div>
       </div>
     </div>

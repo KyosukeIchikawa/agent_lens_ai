@@ -40,7 +40,10 @@ export default function Layout({ children, title = 'Curiosity-Driven Imagination
     <div className="flex flex-col min-h-screen bg-background">
       <Head>
         <title>{title} | 論文解説</title>
-        <meta name="description" content="Curiosity-Driven Imagination: Discovering Plan Operators and Learning Associated Policies for Open-World Adaptation" />
+        <meta
+          name="description"
+          content="Curiosity-Driven Imagination: Discovering Plan Operators and Learning Associated Policies for Open-World Adaptation"
+        />
         <link rel="icon" href="/favicon.ico" />
         <link
           href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&family=Source+Code+Pro&display=swap"
@@ -85,14 +88,14 @@ export default function Layout({ children, title = 'Curiosity-Driven Imagination
               </svg>
             </button>
           </div>
-          
+
           {/* デスクトップ用ナビゲーション */}
           <nav className="hidden md:block">
             <ul className="flex flex-row space-x-8">
-              {navLinks.slice(0, 5).map((link) => (
+              {navLinks.slice(0, 5).map(link => (
                 <li key={link.href}>
-                  <Link 
-                    href={link.href} 
+                  <Link
+                    href={link.href}
                     className={`text-text hover:text-primary ${
                       router.pathname === link.href ? 'font-semibold text-primary' : ''
                     }`}
@@ -104,7 +107,7 @@ export default function Layout({ children, title = 'Curiosity-Driven Imagination
             </ul>
           </nav>
         </div>
-        
+
         {/* モバイル用メインナビゲーション（目次を含む） */}
         <div
           className={`${
@@ -114,10 +117,10 @@ export default function Layout({ children, title = 'Curiosity-Driven Imagination
           <nav className="container mx-auto px-4 py-2">
             <h3 className="text-lg font-semibold my-2 text-text">目次</h3>
             <ul className="flex flex-col space-y-3 pb-4">
-              {navLinks.map((link) => (
+              {navLinks.map(link => (
                 <li key={link.href}>
-                  <Link 
-                    href={link.href} 
+                  <Link
+                    href={link.href}
                     className={`block py-2 text-text hover:text-primary ${
                       router.pathname === link.href ? 'font-semibold text-primary' : ''
                     }`}
@@ -130,17 +133,17 @@ export default function Layout({ children, title = 'Curiosity-Driven Imagination
           </nav>
         </div>
       </header>
-      
+
       <main className="flex-grow container mx-auto px-4 py-8">
         <div className="flex flex-col lg:flex-row">
           <aside className="hidden lg:block w-64 shrink-0 mr-8">
             <div className="sticky top-24 p-4 bg-surface rounded-lg shadow">
               <h3 className="text-lg font-semibold mb-4 text-text">目次</h3>
               <ul className="space-y-2">
-                {navLinks.map((link) => (
+                {navLinks.map(link => (
                   <li key={link.href}>
-                    <Link 
-                      href={link.href} 
+                    <Link
+                      href={link.href}
                       className={`text-text hover:text-primary ${
                         router.pathname === link.href ? 'font-semibold text-primary' : ''
                       }`}
@@ -152,17 +155,16 @@ export default function Layout({ children, title = 'Curiosity-Driven Imagination
               </ul>
             </div>
           </aside>
-          
-          <div className="flex-grow bg-surface rounded-lg shadow p-6">
-            {children}
-          </div>
-          
+
+          <div className="flex-grow bg-surface rounded-lg shadow p-6">{children}</div>
+
           <aside className="hidden xl:block w-64 shrink-0 ml-8">
             <div className="sticky top-24 p-4 bg-surface rounded-lg shadow">
               <h3 className="text-lg font-semibold mb-4 text-text">論文情報</h3>
               <div className="space-y-2 text-sm text-text">
                 <p>
-                  <strong>タイトル:</strong> Curiosity-Driven Imagination: Discovering Plan Operators and Learning Associated Policies for Open-World Adaptation
+                  <strong>タイトル:</strong> Curiosity-Driven Imagination: Discovering Plan
+                  Operators and Learning Associated Policies for Open-World Adaptation
                 </p>
                 <p>
                   <strong>著者:</strong> Pierrick Lorang, Hong Lu, Matthias Scheutz
@@ -185,16 +187,18 @@ export default function Layout({ children, title = 'Curiosity-Driven Imagination
           </aside>
         </div>
       </main>
-      
+
       <ScrollToTop />
-      
+
       <footer className="bg-text text-text-inverse py-8">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
               <p>&copy; 2025 Curiosity-Driven Imagination論文解説</p>
               <p className="text-sm text-text-lighter">
-                本サイトは論文「Curiosity-Driven Imagination: Discovering Plan Operators and Learning Associated Policies for Open-World Adaptation」の解説を目的として作成されています。
+                本サイトは論文「Curiosity-Driven Imagination: Discovering Plan Operators and
+                Learning Associated Policies for Open-World
+                Adaptation」の解説を目的として作成されています。
               </p>
             </div>
             <div>
